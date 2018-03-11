@@ -1,3 +1,21 @@
-<p>
-  client works!
-</p>
+<br>
+<h1>Clientes</h1>
+<br>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <th scope="row">{{client.clientId}}</th>
+      <td>{{client.name}}</td>
+      <td>{{client.email}}</td>
+    </tr>
+  </tbody>
+</table>
