@@ -1,5 +1,5 @@
 <br>
 <button type="button" [routerLink]= "['/clientComponent']" class="btn btn-primary">Clientes</button>
-<button type="button" class="btn btn-secondary">Agregar cliente</button>
+<button type="button" [routerLink]= "['/createClientComponent']" class="btn btn-secondary">Agregar cliente</button>
 <br>
-<app-client></app-client>
+<router-outlet></router-outlet>
