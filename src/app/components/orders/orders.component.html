@@ -1,0 +1,37 @@
+  <div *ngIf="!noEmptyFields" class="alert alert-danger"><strong>{{message}}</strong></div>
+  <h1>¡Hola {{order.client.name}}, realiza tu orden!</h1>
+  <div class="form-group">
+    <label for="name">Fecha</label>
+    <input type="date" class="form-control" name="date" id="date"  [(ngModel)]="order.date" value="{{order.date}}" required>
+  </div>
+  <div class="form-group">
+    <label for="name">Dirección</label>
+    <input type="text" class="form-control" name="address" id="address"  [(ngModel)]="order.address" required>
+  </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of order.client.products">
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <button class="btn btn-primary" (click)="addProduct(product)">Agregar</button>
+    </tr>
+  </tbody>
+
+  <h1>Descripción de Orden </h1>
+  <tbody>
+    <tr *ngFor="let product of products;let i = index">
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <button class="btn btn-danger" (click)="deleteProduct(i)">Eliminar</button>
+    </tr>
+  </tbody>
+  {{order.price}}
+  <button class="btn btn-primary" (click)="orders()">Ordenar</button>
+</table>

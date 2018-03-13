@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CreateClientService } from './create-client.service';
+import { CreateClientService } from '../create-client.service';
 
 describe('CreateClientService', () => {
   beforeEach(() => {

@@ -1,0 +1,23 @@
+<br>
+<h1>Productos</h1>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Producto</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>
+        <div>
+            <i class="far fa-edit text-primary" (click)="edit(product)"></i>
+            <i class="far fa-trash-alt text-danger" (click)="delete(product)"></i>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

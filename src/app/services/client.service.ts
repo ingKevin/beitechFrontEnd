@@ -13,4 +13,8 @@ export class ClientService {
     return this.http.get<ClientModel[]>("http://localhost:8080/getClients");
   }
 
+  public delete(client: ClientModel): void{
+    this.http.post("http://localhost:8080/deleteClient",JSON.stringify(client)).subscribe();
+  }
+
 }

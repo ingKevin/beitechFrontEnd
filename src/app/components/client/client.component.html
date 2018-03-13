@@ -1,0 +1,25 @@
+<br>
+<h1>Clientes</h1>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{client.name}}</td>
+      <td>{{client.price}}</td>
+      <td>
+        <div>
+            <button class="btn btn-primary" (click)="goToOrder(client)">Ordenar</button>
+            <i class="far fa-edit text-primary" (click)="edit(client)"></i>
+            <i class="far fa-trash-alt text-danger" (click)="delete(client)"></i>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

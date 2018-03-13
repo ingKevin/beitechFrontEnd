@@ -1,0 +1,20 @@
+<br>
+<h1>Productos</h1>
+<br>
+<div *ngIf="!isValid" class="alert alert-danger"><strong>{{message}}</strong></div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <button class="btn btn-primary" (click)="add(product)">Agregar</button>
+    </tr>
+  </tbody>
+  <button class="btn btn-primary" (click)="order(products)">Ordenar</button>
+</table>

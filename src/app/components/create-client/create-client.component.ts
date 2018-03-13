@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClientModel } from '../model/client.model';
-import { CreateClientService } from './create-client.service';
-import { OK } from '../model/httpstatus';
+import { ClientModel } from '../../model/client.model';
+import { CreateClientService } from '../../services/create-client.service';
+import { OK } from '../../model/httpstatus';
 
-@Component({
+@Component({ 
   selector: 'app-create-client',
   templateUrl: './create-client.component.html',
   styleUrls: ['./create-client.component.css'],
@@ -19,7 +19,11 @@ export class CreateClientComponent implements OnInit {
 
   constructor(private createClientService: CreateClientService,
               private router: Router) {
-    this.client = new ClientModel();
+      if(sessionStorage.getItem("client")){
+        this.client = JSON.parse(sessionStorage.getItem("client"));
+      } else{
+        this.client = new ClientModel();
+      }
   }
 
   public saveOrUpdate(): void{
@@ -35,6 +39,7 @@ export class CreateClientComponent implements OnInit {
     }else{
       this.message = "Campos obligatorios";
     }
+    sessionStorage.clear();
   }
   ngOnInit() {
   }

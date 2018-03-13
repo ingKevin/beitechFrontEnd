@@ -1,5 +1,13 @@
-<br>
-<button type="button" [routerLink]= "['/clientComponent']" class="btn btn-primary">Clientes</button>
-<button type="button" [routerLink]= "['/createClientComponent']" class="btn btn-secondary">Agregar cliente</button>
-<br>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Beitech</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a [routerLink]= "['/clientComponent']">Ver clientes</a></li>
+      <li><a [routerLink]= "['/createClientComponent']">Crear cliente</a></li>
+      <li><a [routerLink]= "['/listProductsComponent']">Ver productos</a></li>
+    </ul>
+  </div>
+</nav>
 <router-outlet></router-outlet>
