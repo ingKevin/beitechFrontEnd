@@ -43,4 +43,9 @@ export class ClientComponent implements OnInit {
     this.router.navigate(['/ordersComponent']);
   }
 
+  public viewOrders(client: ClientModel): void{
+    sessionStorage.setItem('client', JSON.stringify(client));
+    this.router.navigate(['/listOrdersComponent']);
+  }
+
 }

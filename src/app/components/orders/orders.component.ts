@@ -45,7 +45,7 @@ export class OrdersComponent implements OnInit {
       }else{
         this.message = res.message;
       }
-    });;
+    });
     this.router.navigate(['/clientComponent']);
     sessionStorage.clear();
     }
