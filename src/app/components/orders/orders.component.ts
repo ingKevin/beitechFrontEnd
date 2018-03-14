@@ -50,8 +50,14 @@ export class OrdersComponent implements OnInit {
 
     this.order.products = this.products;
     this.noEmptyFields = true;
-    if(this.order.address.length == 0 || this.order.price == 0){
+    this.emptyFieldsMessage = "";
+    if(this.order.address.length == 0 ){
       this.noEmptyFields = false;
+      this.emptyFieldsMessage = "Dirección vacía";
+    }
+    if(this.order.products.length == 0){
+      this.noEmptyFields = false;
+      this.emptyFieldsMessage = "Orden vacía";
     }
     if(this.noEmptyFields){
       this.ordersService.saveOrUpdate(this.order).subscribe(res =>{
@@ -63,9 +69,6 @@ export class OrdersComponent implements OnInit {
       });
       this.router.navigate(['/clientComponent']);
       sessionStorage.clear();
-    }else{
-      console.log("Aqui estoy");
-      this.emptyFieldsMessage = "Campos vacíos";
     }
   }
 
