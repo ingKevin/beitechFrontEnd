@@ -1,29 +1,33 @@
-<br>
 <h1>Clientes</h1>
-<br>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Nombre</th>
       <th scope="col">Email</th>
-      <th scope="col">Acción</th>
+      <th scope="col">Orden</th>
+      <th scope="col">Productos</th>
+      <th scope="col">Cliente</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let client of clients, let i = index"> 
+    <tr *ngFor="let client of clients, let i = index">
       <td>{{client.name}}</td>
       <td>{{client.email}}</td>
       <td>
         <div>
-            <button class="btn btn-primary" (click)="goToOrder(client)">Ordenar</button>
-            <button class="btn btn-secondary" (click)="viewOrders(client)">Ver ordenes</button>
-            <button class="btn btn-secondary" (click)="viewProducts(client)">Ver productos</button>
-            <button class="btn btn-secondary" (click)="edit(client)">Editar cliente</button>
-            <button class="btn btn-danger" (click)="delete(client, i)">Eliminar cliente</button>
-            <i class="far fa-edit text-primary" (click)="edit(client, index)"></i>
-            <i class="far fa-trash-alt text-danger" (click)="delete(client)"></i>
+            <i class="fas fa-plus text-success" (click)="goToOrder(client)"></i>
+            <i class="fas fa-eye text-secondary" (click)="viewOrders(client)"></i>
         </div>
       </td>
+      <td>
+        <i class="fas fa-eye text-secondary" (click)="viewProducts(client)"></i>
+      </td>
+      <td>
+        <div>
+          <i class="far fa-edit text-primary" (click)="edit(client, index)"></i>
+          <i class="far fa-trash-alt text-danger" (click)="delete(client)"></i>
+        </div>
+    </td>
     </tr>
   </tbody>
 </table>

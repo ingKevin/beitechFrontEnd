@@ -47,6 +47,7 @@ export class OrdersComponent implements OnInit {
   }
 
   public orders(): void{
+
     this.order.products = this.products;
     this.noEmptyFields = true;
     if(this.order.address.length == 0 || this.order.price == 0){
@@ -63,6 +64,7 @@ export class OrdersComponent implements OnInit {
       this.router.navigate(['/clientComponent']);
       sessionStorage.clear();
     }else{
+      console.log("Aqui estoy");
       this.emptyFieldsMessage = "Campos vacíos";
     }
   }

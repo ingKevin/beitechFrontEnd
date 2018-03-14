@@ -1,38 +1,74 @@
+<body class="bg-light">
+    <div class="container">
+      <div class="text-center">
+        <h2>Bienvenido {{order.client.name}}</h2>
+        <p class="lead">Realiza tu pedido.</p>
+      </div>
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Productos disponibles</span>
+            <span class="badge badge-secondary badge-pill">{{order.client.products.length}}</span>
+          </h4>
+          <ul class="list-group mb-3" >
+            <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of order.client.products">
+              <div>
+                <h6 class="my-0">{{product.name}}</h6>
+              </div>
+              <span class="text-muted">{{product.price}}</span>
+              <i class="fas fa-plus text-success" (click)="addProduct(product)"></i>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Su pedido</span>
+            <span class="badge badge-secondary badge-pill">{{products.length}}</span>
+          </h4>
+          <ul class="list-group mb-3" >
+            <div *ngIf="!isLimitProducts" class="alert alert-danger"><strong>{{limitProductsMessage}}</strong></div>
+            <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of products;let i = index">
+              <div>
+                <h6 class="my-0">{{product.name}}</h6>
+              </div>
+              <span class="text-muted">{{product.price}}</span>
+              <i class="far fa-trash-alt text-danger" (click)="deleteProduct(i)"></i>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total </span>
+              <strong>${{order.price}}</strong>
+            </li>
+          </ul>
 
-  <div *ngIf="!noEmptyFields" class="alert alert-danger"><strong>{{emptyFieldsMessage}}</strong></div>
-  <h1>¡Hola {{order.client.name}}, realiza tu orden!</h1>
-  <div class="form-group">
-    <label for="name">Fecha</label>
-    <input type="date" class="form-control" name="date" id="date"  [(ngModel)]="order.date" required>
-  </div>
-  <div class="form-group">
-    <label for="name">Dirección</label>
-    <input type="text" class="form-control" name="address" id="address"  [(ngModel)]="order.address" required>
-  </div>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Precio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <div *ngIf="!isLimitProducts" class="alert alert-danger"><strong>{{limitProductsMessage}}</strong></div>
-    <tr *ngFor="let product of order.client.products">
-      <td>{{product.name}}</td>
-      <td>{{product.price}}</td>
-      <button class="btn btn-primary" (click)="addProduct(product)">Agregar</button>
-    </tr>
-  </tbody>
-
-  <h1>Descripción de Orden </h1>
-  <tbody>
-    <tr *ngFor="let product of products;let i = index">
-      <td>{{product.name}}</td>
-      <td>{{product.price}}</td>
-      <button class="btn btn-danger" (click)="deleteProduct(i)">Eliminar</button>
-    </tr>
-  </tbody>
-  {{order.price}}
-  <button class="btn btn-primary" (click)="orders()">Ordenar</button>
-</table>
+          <form class="card p-2">
+            <div class="input-group">
+              <div class="input-group-append">
+                <button class="btn btn-secondary" (click)="orders()">Ordenar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4 order-md-1">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Información</span>
+          </h4>
+          <form class="needs-validation" novalidate="">
+            <div class="mb-3">
+              <label>Fecha<span class="text-muted">(Requerido)</span></label>
+              <div class="input-group">
+                <input type="date" class="form-control" name="date" id="date" [(ngModel)]="order.date" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label>Dirección<span class="text-muted">(Opcional)</span></label>
+              <div class="input-group">
+                <input type="text" class="form-control" name="address" id="address" [(ngModel)]="order.address" required>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">© 2018 Kevin Steven Arias Gantiva</p>
+    </footer>

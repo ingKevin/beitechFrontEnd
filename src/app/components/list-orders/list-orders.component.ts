@@ -45,7 +45,7 @@ export class ListOrdersComponent implements OnInit {
 
   public filterByDate(date: Date): void{
     if(date){
-      this.ordersFilter = this.orders.filter(n =>n.date>this.date);
+      this.ordersFilter = this.orders.filter(n =>n.date>=this.date);
       console.log(date);
     }
 
