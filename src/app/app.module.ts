@@ -12,10 +12,8 @@ import { ProductComponent } from './components/product/product.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { EditClientComponent } from './components/edit-client/edit-client.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
-import { CreateOrderComponent } from './components/create-order/create-order.component';
 import { ListOrdersComponent } from './components/list-orders/list-orders.component';
 
 @NgModule({
@@ -27,11 +25,9 @@ import { ListOrdersComponent } from './components/list-orders/list-orders.compon
     CreateProductComponent,
     EditClientComponent,
     OrdersComponent,
-    OrderDetailComponent,
     EditProductComponent,
     ListProductsComponent,
-    CreateOrderComponent,
-    ListOrdersComponent
+    ListOrdersComponent 
   ],
   imports: [
     BrowserModule,

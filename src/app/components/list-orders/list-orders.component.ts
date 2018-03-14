@@ -16,8 +16,10 @@ import { OrdersService } from '../../services/orders.service';
 export class ListOrdersComponent implements OnInit {
 
   private orders: Array<OrderModel> ;
+  private ordersFilter: Array<OrderModel> ;
   private products: ProductOrderModel[];
   private client: ClientModel;
+  private date: Date;
 
   constructor(private ordersService: OrdersService,
               private router: Router) {
@@ -27,6 +29,7 @@ export class ListOrdersComponent implements OnInit {
   public loadOrders(): void{
     this.ordersService.getOrdersByClient(this.client).subscribe(res => {
       this.orders = res;
+      this.ordersFilter = res;
       let x = [];
       let p = {};
       res.forEach(function(order) {
@@ -35,14 +38,16 @@ export class ListOrdersComponent implements OnInit {
           //productsAux[product.name] = (productsAux[product.name]||0) + 1;
         });
         x.push(productsAux);
-        //console.log(x.toString());
       });
       this.products = x;
-
     });
   }
 
-  public orderByDate(): void{
+  public filterByDate(date: Date): void{
+    if(date){
+      this.ordersFilter = this.orders.filter(n =>n.date>this.date);
+      console.log(date);
+    }
 
   }
 

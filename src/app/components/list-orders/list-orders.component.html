@@ -1,7 +1,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Fecha de creación</th>
+      <th scope="col">
+        <button class="btn btn-primary" (click)="filterByDate(date)">Filtrar desde:</button>
+        <input type="date" name="date" [(ngModel)]="date" placeholder="Filtrar desde"><br><br>
+        Fecha de creación</th>
       <th scope="col">ID</th>
       <th scope="col">Total $</th>
       <th scope="col">Dirección</th>
@@ -9,8 +12,9 @@
     </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let order of orders; let i = index">
-    <td>{{order.date}}</td>
+
+  <tr *ngFor="let order of ordersFilter; let i = index">
+    <td>{{order.date }}</td>
     <td>{{order.orderId}}</td>
     <td>{{order.price}}</td>
     <td>{{order.address}}</td>
@@ -20,6 +24,8 @@
         </ul>
     </td>
   </tr>
+
+
 
 </tbody>
 </table>
