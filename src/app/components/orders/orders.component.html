@@ -1,14 +1,14 @@
-  <div *ngIf="!noEmptyFields" class="alert alert-danger"><strong>{{message}}</strong></div>
+
+  <div *ngIf="!noEmptyFields" class="alert alert-danger"><strong>{{emptyFieldsMessage}}</strong></div>
   <h1>¡Hola {{order.client.name}}, realiza tu orden!</h1>
   <div class="form-group">
     <label for="name">Fecha</label>
-    <input type="date" class="form-control" name="date" id="date"  [(ngModel)]="order.date" value="{{order.date}}" required>
+    <input type="date" class="form-control" name="date" id="date"  [(ngModel)]="order.date" required>
   </div>
   <div class="form-group">
     <label for="name">Dirección</label>
     <input type="text" class="form-control" name="address" id="address"  [(ngModel)]="order.address" required>
   </div>
-
 <table class="table">
   <thead>
     <tr>
@@ -17,6 +17,7 @@
     </tr>
   </thead>
   <tbody>
+    <div *ngIf="!isLimitProducts" class="alert alert-danger"><strong>{{limitProductsMessage}}</strong></div>
     <tr *ngFor="let product of order.client.products">
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>

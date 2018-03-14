@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ClientModel } from '../../model/client.model';
-import { CreateClientService } from '../../services/create-client.service';
+import { ClientService } from '../../services/client.service';
 import { OK } from '../../model/httpstatus';
 
-@Component({ 
+@Component({
   selector: 'app-create-client',
   templateUrl: './create-client.component.html',
   styleUrls: ['./create-client.component.css'],
-  providers: [CreateClientService]
+  providers: [ClientService]
 })
 export class CreateClientComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class CreateClientComponent implements OnInit {
   private isValid: boolean = true;
   private message: string ="";
 
-  constructor(private createClientService: CreateClientService,
+  constructor(private ClientService: ClientService,
               private router: Router) {
       if(sessionStorage.getItem("client")){
         this.client = JSON.parse(sessionStorage.getItem("client"));
@@ -27,19 +27,13 @@ export class CreateClientComponent implements OnInit {
   }
 
   public saveOrUpdate(): void{
-    this.isValid = this.createClientService.validate(this.client);
+    this.isValid = this.ClientService.validate(this.client);
     if(this.isValid){
-      this.createClientService.saveOrUpdate(this.client).subscribe(res =>{
-        if(res.responseCode == OK){
-          this.router.navigate(['/clientComponent']);
-        }else{
-          this.message = res.message;
-        }
-      });
+      this.ClientService.saveOrUpdate(this.client);
+      this.router.navigate(['/clientComponent']);
     }else{
       this.message = "Campos obligatorios";
-    }
-    sessionStorage.clear();
+    }    
   }
   ngOnInit() {
   }

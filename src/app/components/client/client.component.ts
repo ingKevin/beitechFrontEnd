@@ -24,7 +24,6 @@ export class ClientComponent implements OnInit {
   private loadUsers():void {
   this.clientService.getClients().subscribe(res => {
       this.clients = res;
-      console.log(res);
     });
   }
 
@@ -33,9 +32,9 @@ export class ClientComponent implements OnInit {
     this.router.navigate(['/createClientComponent']);
   }
 
-  public delete(client: ClientModel): void{
+  public delete(client: ClientModel, index: number): void{
     this.clientService.delete(client);
-    location.reload();
+    this.clients.splice(index, 1);
   }
 
   public goToOrder(client: ClientModel): void{
@@ -46,6 +45,11 @@ export class ClientComponent implements OnInit {
   public viewOrders(client: ClientModel): void{
     sessionStorage.setItem('client', JSON.stringify(client));
     this.router.navigate(['/listOrdersComponent']);
+  }
+
+  public viewProducts(client: ClientModel): void{
+    sessionStorage.setItem('client', JSON.stringify(client));
+    this.router.navigate(['/productComponent']);
   }
 
 }

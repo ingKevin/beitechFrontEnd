@@ -1,7 +1,7 @@
 <br>
-<h1>Productos</h1>
+<h1>Productos disponibles</h1>
 <br>
-<div *ngIf="!isValid" class="alert alert-danger"><strong>{{message}}</strong></div>
+<div *ngIf="!noProductRepeat" class="alert alert-danger"><strong>{{message}}</strong></div>
 <table class="table">
   <thead>
     <tr>
@@ -10,11 +10,20 @@
     </tr>
   </thead>
   <tbody>
+    <tr *ngFor="let product of client.products;let i = index">
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <button class="btn btn-danger" (click)="deleteProduct(client, product, i)">Eliminar</button>
+    </tr>
+  </tbody>
+
+<h1>Agregar productos</h1>
+  <tbody>
     <tr *ngFor="let product of products">
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>
-      <button class="btn btn-primary" (click)="add(product)">Agregar</button>
+      <button class="btn btn-primary" (click)="addProduct(product)">Agregar</button>
     </tr>
   </tbody>
-  <button class="btn btn-primary" (click)="order(products)">Ordenar</button>
+
 </table>

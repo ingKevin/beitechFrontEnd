@@ -9,12 +9,16 @@
     </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let order of orders">
+  <tr *ngFor="let order of orders; let i = index">
     <td>{{order.date}}</td>
     <td>{{order.orderId}}</td>
     <td>{{order.price}}</td>
     <td>{{order.address}}</td>
-    <td></td>    
+    <td>
+        <ul *ngFor="let product of order.products" class="list-group " id="products">
+            <li class="list-group-item">{{product.name}}</li>
+        </ul>
+    </td>
   </tr>
 
 </tbody>

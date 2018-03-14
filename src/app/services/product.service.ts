@@ -14,14 +14,20 @@ export class ProductService {
     return this.http.post<ProductModel[]>("http://localhost:8080/getProductsByClient", JSON.stringify(client));
   }
 
-  public validate(product: ProductModel[]): boolean{
-    let isValid = true;
-    let count = 0;
-    for(let p in product){
-
-    }    
-    return isValid
+  public delete(product: ProductModel): void{
+    this.http.post<ProductModel[]>("http://localhost:8080/deleteProduct", JSON.stringify(product)).subscribe();
   }
+
+  public saveOrUpdate(product: ProductModel): void{
+    console.log(product);
+    this.http.post("http://localhost:8080/saveOrUpdateProduct", JSON.stringify(product)).subscribe();
+  }
+
+  public getProducts(): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>("http://localhost:8080/getProducts");
+  }
+
+
 
 
 }

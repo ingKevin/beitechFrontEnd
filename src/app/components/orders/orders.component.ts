@@ -17,7 +17,10 @@ export class OrdersComponent implements OnInit {
 
   private order: OrderModel = <OrderModel>{};
   private products: Array<ProductModel> = [];
-  private message: string;
+  private limitProductsMessage: string;
+  private emptyFieldsMessage: string;
+  private noEmptyFields: boolean = true;
+  private isLimitProducts: boolean = true;
 
   constructor(private ordersService: OrdersService,
               private router: Router) {
@@ -28,27 +31,43 @@ export class OrdersComponent implements OnInit {
   }
 
   public addProduct(product: ProductModel): void{
-    this.products.push(product);
-    this.order.price += product.price;
+    if(this.products.length < 5){
+      this.products.push(product);
+      this.order.price += product.price;
+    }else{
+      this.isLimitProducts = false;
+      this.limitProductsMessage = "Límite de productos";
+    }
   }
 
   public deleteProduct(index: number): void{
     this.order.price -= this.products[index].price;
     this.products.splice(index, 1);
+    this.isLimitProducts = true;
   }
 
   public orders(): void{
     this.order.products = this.products;
-    this.ordersService.saveOrUpdate(this.order).subscribe(res =>{
-      if(res.responseCode == OK){
-        this.router.navigate(['/clientComponent']);
-      }else{
-        this.message = res.message;
-      }
-    });
-    this.router.navigate(['/clientComponent']);
-    sessionStorage.clear();
+    this.noEmptyFields = true;
+    if(this.order.address.length == 0 || this.order.price == 0){
+      this.noEmptyFields = false;
     }
+    if(this.noEmptyFields){
+      this.ordersService.saveOrUpdate(this.order).subscribe(res =>{
+        if(res.responseCode == OK){
+          this.router.navigate(['/clientComponent']);
+        }else{
+          this.emptyFieldsMessage= res.message;
+        }
+      });
+      this.router.navigate(['/clientComponent']);
+      sessionStorage.clear();
+    }else{
+      this.emptyFieldsMessage = "Campos vacíos";
+    }
+  }
+
+
 
   ngOnInit() {
   }

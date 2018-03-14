@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ListProductsService } from '../../services/list-products.service';
+import { ProductService } from '../../services/product.service';
 import { ProductModel } from './../../model/product.model';
 
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
   styleUrls: ['./list-products.component.css'],
-  providers:[ListProductsService]
+  providers:[ProductService]
 })
 export class ListProductsComponent implements OnInit {
 
   private products: Array<ProductModel>;
 
-  constructor(private listProductsService: ListProductsService, private router: Router) { }
+  constructor(private productsService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.loadProducts();
   }
 
   private loadProducts():void {
-  this.listProductsService.getProducts().subscribe(res => {
+  this.productsService.getProducts().subscribe(res => {
       this.products = res;
     });
   }

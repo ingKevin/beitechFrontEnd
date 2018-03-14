@@ -17,4 +17,19 @@ export class ClientService {
     this.http.post("http://localhost:8080/deleteClient",JSON.stringify(client)).subscribe();
   }
 
+  public saveOrUpdate(client: ClientModel): void{
+    this.http.post("http://localhost:8080/saveOrUpdateClient",JSON.stringify(client)).subscribe();
+  }
+
+  public validate(client: ClientModel): boolean{
+    let isValid = true;
+
+    if(!client.name){
+      isValid = false;
+    }
+    if(!client.email){
+      isValid = false;
+    }
+    return isValid
+  }
 }
