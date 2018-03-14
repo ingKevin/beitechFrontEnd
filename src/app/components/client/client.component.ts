@@ -52,4 +52,9 @@ export class ClientComponent implements OnInit {
     this.router.navigate(['/productComponent']);
   }
 
+  public create(): void{
+    this.router.navigate(['/createClientComponent']);
+  }
+
+
 }
